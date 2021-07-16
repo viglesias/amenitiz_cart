@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Products</h1>
+
+<table id="products">
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr id='<%="product-#{product.id}"%>'>
+        <td><%= product.code %></td>
+        <td><%= product.name %></td>
+        <td><%= product.price %>€</td>
+        <td><%= button_to "Add Product", "cart/add/#{product.id}", method: :put %></td>
+        <td><%= button_to "Remove Product", "cart/remove/#{product.id}", method: :put %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
