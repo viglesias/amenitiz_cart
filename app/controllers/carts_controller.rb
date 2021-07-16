@@ -4,6 +4,10 @@ class CartsController < ApplicationController
 
   def add
     flash[:notice] = "Product added successfully"
+    session[:cart] ||= []
+    session[:cart] << params[:product_id]
+
+
     redirect_to products_path
   end
 
