@@ -1,10 +1,15 @@
 class ProductsController < ApplicationController
+  before_action :set_session_cart, only: [:index]
 
   # GET /products or /products.json
   def index
     @products = Product.all
-    session[:cart] ||= []
-    @cart_items_counter = session[:cart].count || 0
+    @cart_items_counter = @cart.total_items
   end
+
+  private
+    def set_session_cart
+      @cart = Cart.new(session[:cart])
+    end
 
 end

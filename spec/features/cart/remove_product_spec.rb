@@ -54,7 +54,7 @@ RSpec.describe "When a user remove a product from the cart" do
         
     end
 
-    it "Decrement cart items counter when element dont exists" do
+    it "Decrement cart items counter when element doesnt exists" do
         product = Product.create(code: 'GR1', name: "Green Tea", price: 3.11)
         product2 = Product.create(code: 'SR1', name: "Strawberries", price: 5.00)
         product3 = Product.create(code: 'CF1', name: "Coffe", price: 11.23)
