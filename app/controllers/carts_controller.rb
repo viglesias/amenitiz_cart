@@ -12,9 +12,13 @@ class CartsController < ApplicationController
   end
 
   def remove
-    flash[:notice] = "Product removed successfully"
     session[:cart] ||= []
-    session[:cart].delete_at(session[:cart].index(params[:product_id]) || session[:cart].length)
+    if session[:cart].include? params[:product_id]
+      session[:cart].delete_at(session[:cart].index(params[:product_id]) || session[:cart].length)
+      flash[:notice] = "Product removed successfully"
+    else
+      flash[:notice] = "Product not found"
+    end
     redirect_to products_path
   end
 
