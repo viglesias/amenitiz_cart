@@ -28,4 +28,27 @@ class Cart
         @cart_items.sum{|k,v| v}
     end
 
+    def total_price
+        price = 0
+        @cart_items.map do |k,v|
+            product = Product.where(code: k.to_s).first
+            price += calculate_price(product, v)
+        end
+        price
+    end
+
+    private def calculate_price product, amount
+        return 0 if amount == 0
+        price = 0
+        case product.code.to_s
+            when "GR1"
+                price = product.price * amount
+                discount = amount > 1 ? ((amount / 2).to_i * product.price) : 0
+                price = price - discount
+            when "SR1"
+              price = (amount >= 3 ? (4.50 * amount) : (amount * product.price))
+        end
+        price.round(2)
+    end
+
 end
