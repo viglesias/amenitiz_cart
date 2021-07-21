@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resource :cart, only: [:show] do
     put 'add/:product_id', to: 'carts#add'
     put 'remove/:product_id', to: 'carts#remove'
+    get 'clear', to: 'carts#clear'
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'products#index'

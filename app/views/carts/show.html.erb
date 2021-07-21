@@ -1,2 +1,23 @@
-<h1>Carts#show</h1>
-<p>Find me in app/views/carts/show.html.erb</p>
+<%= render 'shared/menu'%>
+<div class="page-content">
+  <p id="notice"><%= notice %></p>
+
+  <h1>Cart Items</h1>
+
+  <table id="products" class="table">
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr id='<%="cart-items"%>'>
+      <td><%= @cart_items.select{|k,v| v.to_i != 0}.map{|k,v| ([k]*v).join(', ')}.join(', ') %></td>
+      <td><%= @cart.total_price %></td>
+      </tr>
+    </tbody>
+  </table>
+  <p>Items in cart: <%= @cart.total_items %></p>
+</div>
