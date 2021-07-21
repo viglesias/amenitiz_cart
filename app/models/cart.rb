@@ -47,6 +47,8 @@ class Cart
                 price = price - discount
             when "SR1"
               price = (amount >= 3 ? (4.50 * amount) : (amount * product.price))
+            when "CF1"
+              price = (amount >= 3 ? (product.price * amount *2/3) : (amount * product.price))
         end
         price.round(2)
     end
